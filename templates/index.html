@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="col-md-2 mx-auto">
+    <form class="form text-center" method="POST" action="/">
+        <textarea class="form-control mb-1" type="text" name="content" id="content" placeholder="Write task here..."></textarea>
+        <input class="btn btn-primary mb-3" type="submit" value="Add Task">
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Added</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead> 
+    {% for task in tasks %}
+    <tr>
+        <th scope="row">{{ task.id }}</th>
+        <td>{{ task.content }}</td>
+        <td>{{ task.date_create.date() }}</td>
+        <td>
+            <a href="">Delete</a><br>
+            <a href="">Update</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
