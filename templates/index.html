@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<div class="col-md-2 mx-auto">
+<div class="col-md-2 mx-auto mt-2">
     <form class="form text-center" method="POST" action="/">
         <textarea class="form-control mb-1" type="text" name="content" id="content" placeholder="Write task here..."></textarea>
         <input class="btn btn-primary mb-3" type="submit" value="Add Task">
     </form>
 </div>
+
+{% if tasks|length < 1 %}
+<div class="col-md-2 mx-auto mt-2">
+    <h1>Task list empty.</h1>
+</div>
+{% else %}
 
 <table class="table">
     <thead>
@@ -23,10 +29,11 @@
         <td>{{ task.content }}</td>
         <td>{{ task.date_create.date() }}</td>
         <td>
-            <a href="">Delete</a><br>
-            <a href="">Update</a>
+            <a href="/delete/{{ task.id }}">Delete</a><br>
+            <a href="/update/{{ task.id }}">Update</a>
         </td>
     </tr>
     {% endfor %}
 </table>
+{% endif %}
 {% endblock %}
