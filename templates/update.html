@@ -2,7 +2,7 @@
 {% block body %}
 
 <div class="col-md-2 mx-auto mt-2">
-    <form class="form text-center" method="PUT" action="/update/<int:id>">
+    <form class="form text-center" method="POST" action="/update/{{ task.id }}/">
         <textarea class="form-control mb-1" type="text" name="content" id="content" placeholder="Write task here...">{{ task.content }}</textarea>
         <input class="btn btn-primary mb-3" type="submit" value="Add Task">
     </form>

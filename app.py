@@ -42,7 +42,6 @@ def index():
 @app.route('/delete/<int:id>/', methods=['GET', 'POST'])
 def delete(id):
     delete_task = ToDo.query.get_or_404(id)
-
     try:
         db.session.delete(delete_task)
         db.session.commit()
@@ -51,14 +50,12 @@ def delete(id):
     except:
         return red('/')
 
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
+@app.route('/update/<int:id>/', methods=['GET', 'POST'])
 def update(id):
     task = ToDo.query.get_or_404(id)
-
     if req.method == 'POST':
-        task.content = req.form['content']
-
         try:
+            task.content = req.form['content']
             db.session.commit()
             return red('/')
         except:
@@ -104,7 +101,7 @@ def delete_api():
 
 @app.route('/api/update', methods=['GET', 'PUT'])
 def update_api():
-    if req.method == 'PUT':
+    if req.method == 'POST':
         if req.form['content'] != '':
             ID = req.form['id']
             task = ToDo.query.get_or_404(ID)
