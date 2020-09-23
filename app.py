@@ -115,4 +115,4 @@ def update_api():
         return {'data':'API for updating tasks'}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
